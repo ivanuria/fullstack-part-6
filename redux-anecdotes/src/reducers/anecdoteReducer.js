@@ -1,4 +1,4 @@
-const anecdotesAtStart = [
+export const anecdotesAtStart = [
   'If it hurts, do it more often',
   'Adding manpower to a late software project makes it later!',
   'The first 90 percent of the code accounts for the first 90 percent of the development time...The remaining 10 percent of the code accounts for the other 90 percent of the development time.',
@@ -22,8 +22,26 @@ const initialState = anecdotesAtStart.map(asObject)
 const reducer = (state = initialState, action) => {
   console.log('state now: ', state)
   console.log('action', action)
-
+  switch (action.type) {
+    case 'RESET_VOTES':
+      return state.map(s = { ...s, votes:0 })
+    case 'VOTE':
+      return state.map(s => s.id === action.payload.id ? {...s, votes: s.votes + 1 } : s)
+  }
   return state
+}
+
+export const resetVotes = () => {
+  return {
+    type: 'RESET_VOTES'
+  }
+}
+
+export const voteTo = (id) => {
+  return {
+    type: 'VOTE',
+    payload: { id }
+  }
 }
 
 export default reducer
