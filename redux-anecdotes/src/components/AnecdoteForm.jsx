@@ -4,7 +4,7 @@ import { addNewAnecdote } from '../reducers/anecdoteReducer'
 
 const FormRow = ({ children }) => <div style={ { display: 'flex', flexFlow: 'column', gap: '8px' } } >{ children }</div>
 
-const NewAnecdote = () => {
+const AnecdoteForm = () => {
   const dispatch = useDispatch()
 
   const addAnecdote = (event) => {
@@ -17,14 +17,17 @@ const NewAnecdote = () => {
   }
 
   return (
-    <form onSubmit={ addAnecdote }>
-      <FormRow>
-        <label htmlFor='content'>Content:</label>
-        <input id='content' name='content' />
-      </FormRow>
-      <input type='submit' value='Create anecdote' />
-    </form>
+    <div>
+      <h2>Create New</h2>
+      <form onSubmit={ addAnecdote }>
+        <FormRow>
+          <label htmlFor='content'>Content:</label>
+          <input id='content' name='content' />
+        </FormRow>
+        <input type='submit' value='Create anecdote' />
+      </form>
+    </div>
   )
 }
 
-export default NewAnecdote
+export default AnecdoteForm

@@ -15,7 +15,7 @@ const Anecdote = ({ anecdote, handleVote }) => {
   )
 }
 
-const Anecdotes = () => {
+const AnecdoteList = () => {
   const anecdotes = useSelector(state => state)
   const dispatch = useDispatch()
 
@@ -26,11 +26,11 @@ const Anecdotes = () => {
 
   return (
     <ul style={ { paddingLeft: '0px', listStyleType: 'none' } }>
-    {anecdotes.map(anecdote =>
+    {anecdotes.sort((a, b) => b.votes - a.votes).map(anecdote =>
       <Anecdote key={ anecdote.id } anecdote={ anecdote } handleVote={ vote } />
     )}
   </ul>
   )
 }
 
-export default Anecdotes
+export default AnecdoteList
