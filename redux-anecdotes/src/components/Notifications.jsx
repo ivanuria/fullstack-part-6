@@ -10,8 +10,10 @@ const Notification = ({ type, message, id }) => {
   }, [id])
 
   const style = {
-    border: '1px solid currentcolor',
-    padding: '1rem'
+    border: '2px solid currentcolor',
+    borderRadius: 8,
+    padding: '1rem',
+    cursor: 'pointer'
   }
   switch(type) {
     case 'INFO':
@@ -21,7 +23,7 @@ const Notification = ({ type, message, id }) => {
       style.color = 'red'
   }
   return (
-    <li style={style}>
+    <li style={style} onClick={ () => dispatch(deleteNotification(id)) }>
       { message }
     </li>
   )

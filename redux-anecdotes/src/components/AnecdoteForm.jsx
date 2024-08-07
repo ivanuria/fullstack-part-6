@@ -1,6 +1,7 @@
 
 import { useDispatch } from 'react-redux'
 import { addNewAnecdote } from '../reducers/anecdoteReducer'
+import { addNotificationInfo } from '../reducers/notificationsReducer'
 import FormRow from './FormRow'
 
 const AnecdoteForm = () => {
@@ -11,6 +12,7 @@ const AnecdoteForm = () => {
     const content = event.target.content.value
     if (content) {
       dispatch(addNewAnecdote(content))
+      dispatch(addNotificationInfo(`New anecdote ADDED! '${content}'`))
     }
     event.target.content.value = ''
   }

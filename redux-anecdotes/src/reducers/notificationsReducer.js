@@ -5,7 +5,12 @@ export const initialState = [
   {
     id: 'welcome',
     type: 'INFO',
-    message: 'Welcome to Anecdotes'
+    message: 'Welcome to Anecdotes, you can click me if I am an issue'
+  },
+  {
+    id: 'multiple',
+    type: 'INFO',
+    message: 'Now with multiple messages!!!'
   }
 ]
 
