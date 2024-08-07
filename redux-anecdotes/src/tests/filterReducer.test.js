@@ -10,7 +10,7 @@ describe('filterReducer', () => {
     assert.strictEqual(states, '')
   })
 
-  test('changes filter prperly', () => {
+  test('changes filter properly', () => {
     const initialState = ''
     deepFreeze(initialState)
     const statesTest = filterReducer(initialState, setFilterTo('test'))

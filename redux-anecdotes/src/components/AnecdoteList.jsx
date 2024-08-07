@@ -29,7 +29,7 @@ const AnecdoteList = () => {
 
   return (
   <ul style={ { paddingInlineStart: '0px', listStyleType: 'none' } }>
-    {anecdotes.sort((a, b) => b.votes - a.votes).map(anecdote =>
+    {[...anecdotes].sort((a, b) => b.votes - a.votes).map(anecdote =>
       <Anecdote key={ anecdote.id } anecdote={ anecdote } handleVote={ vote } />
     )}
   </ul>
