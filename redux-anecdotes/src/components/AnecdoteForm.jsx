@@ -1,8 +1,7 @@
 
 import { useDispatch } from 'react-redux'
 import { addNewAnecdote } from '../reducers/anecdoteReducer'
-
-const FormRow = ({ children }) => <div style={ { display: 'flex', flexFlow: 'column', gap: '8px' } } >{ children }</div>
+import FormRow from './FormRow'
 
 const AnecdoteForm = () => {
   const dispatch = useDispatch()
@@ -24,7 +23,7 @@ const AnecdoteForm = () => {
           <label htmlFor='content'>Content:</label>
           <input id='content' name='content' />
         </FormRow>
-        <input type='submit' value='Create anecdote' />
+        <input type='submit' value='Create anecdote' style={ { marginBlock: '1rem' } } />
       </form>
     </div>
   )
