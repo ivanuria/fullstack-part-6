@@ -5,11 +5,13 @@ import App from './App'
 // Reducers everywhere
 import anecdoteReducer from './reducers/anecdoteReducer'
 import filterReducer from './reducers/filterReducer'
+import notificationsReducer from './reducers/notificationsReducer'
 
 const store = configureStore({
   reducer: {
     anecdotes: anecdoteReducer,
-    filter: filterReducer
+    filter: filterReducer,
+    notifications: notificationsReducer
   }
 })
 
