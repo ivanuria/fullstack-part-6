@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import getId from '../utils/getId'
+import getId from '../utils/getId.js'
 
 const notificationsSlice = createSlice({
   name: 'notifications',
@@ -36,7 +36,7 @@ export const { addNotificationInfo, addNotificationError, deleteNotification, ap
 export const setNotification = (message, timeout=5, { type = 'INFO' } = {}) => {
   return async dispatch => {
     const id = getId()
-    dispatch(appendNotification({ id, message: `${type}: ${message}`, type }))
+    dispatch(appendNotification({ id, message, type }))
     setTimeout(() => dispatch(deleteNotification(id)), timeout * 1000)
   }
 }
@@ -48,7 +48,7 @@ export const initializeNotifications = (notifications) => {
       const id = getId()
       finalMessages.push({
         id,
-        message: `${type || 'INFO'}: ${message}`,
+        message,
         type: type || 'INFO',
         timeout: timeout || 5
       })

@@ -18,7 +18,7 @@ const Notification = ({ type, message, id }) => {
   }
   return (
     <li style={style} onClick={ () => dispatch(deleteNotification(id)) }>
-      { message }
+      { type }: { message }
     </li>
   )
 }
