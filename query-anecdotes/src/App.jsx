@@ -1,9 +1,11 @@
 import AnecdoteForm from './components/AnecdoteForm'
-import Notification from './components/Notification'
+import Notifications from './components/Notifications'
 import { useQuery, useQueryClient, useMutation } from '@tanstack/react-query'
 import { getAnecdotes, updateAnecdote } from './requests'
+import { useNotificationsDispatch, createNotificationAction } from './components/NotificationContext'
 
 const App = () => {
+  const notificationDispatch = useNotificationsDispatch()
   const queryClient = useQueryClient()
   const updateAnecdoteMutation = useMutation({
     mutationFn: updateAnecdote,
@@ -15,6 +17,7 @@ const App = () => {
   })
   const handleVote = (anecdote) => {
     updateAnecdoteMutation.mutate({ ...anecdote, votes: anecdote.votes + 1 })
+    notificationDispatch(createNotificationAction(`Vote for '${anecdote.content}' registered`))
   }
   const result = useQuery({
     queryKey: ['anecdotes'],
@@ -29,13 +32,13 @@ const App = () => {
   const anecdotes = result.data
   return (
     <div>
-      <h3>Anecdote app</h3>
-
-      <Notification />
+      <h1>Anecdote app</h1>
+      <Notifications />
       <AnecdoteForm />
-
+      <h2>Anecdote List: </h2>
+      <ul style={ { listStyleType: 'none', paddingInlineStart: 0 } } >
       {anecdotes.map(anecdote =>
-        <div key={anecdote.id}>
+        <li key={anecdote.id} style={ { paddingBlock: '.5rem' } }>
           <div>
             {anecdote.content}
           </div>
@@ -43,8 +46,9 @@ const App = () => {
             has {anecdote.votes}
             <button onClick={() => handleVote(anecdote)}>vote</button>
           </div>
-        </div>
+        </li>
       )}
+      </ul>
     </div>
   )
 }
