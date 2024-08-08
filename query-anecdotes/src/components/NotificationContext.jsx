@@ -1,6 +1,5 @@
 import { createContext, useReducer, useContext } from 'react'
-
-const getId = () => (100000 * Math.random()).toFixed(0)
+import getId from '../utils/getId'
 
 const notificationsReducer = (state, action) => {
   switch (action.type) {
@@ -40,12 +39,12 @@ export const useNotificationsDispatch = () => {
   return vAndD[1]
 }
 
-export const NotificationsContextProvider = ({ children }) => {
+export const NotificationsContextProvider = (props) => {
   const [notifications, notificationsDispatch] = useReducer(notificationsReducer, [])
 
   return (
     <NotificationsContext.Provider value={ [notifications, notificationsDispatch] }>
-      { children }
+      { props.children }
     </NotificationsContext.Provider>
   )
 }
