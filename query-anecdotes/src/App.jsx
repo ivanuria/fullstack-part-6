@@ -4,7 +4,6 @@ import { useQuery } from '@tanstack/react-query'
 import { getAnecdotes } from './requests'
 
 const App = () => {
-
   const handleVote = (anecdote) => {
     console.log('vote')
   }
@@ -12,7 +11,6 @@ const App = () => {
     queryKey: ['anecdotes'],
     queryFn: getAnecdotes
   })
-
   if (result.isLoading) {
     return <div>Loading data...</div>
   }
@@ -20,7 +18,6 @@ const App = () => {
     return <div>Anecdote Service unavailable due to a problematic server. Please wait till we medicate it properly.</div>
   }
   const anecdotes = result.data
-
   return (
     <div>
       <h3>Anecdote app</h3>
