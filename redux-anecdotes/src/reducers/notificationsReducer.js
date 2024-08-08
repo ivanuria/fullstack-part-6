@@ -1,22 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit'
 import getId from '../utils/getId'
 
-export const initialState = [
-  {
-    id: 'welcome',
-    type: 'INFO',
-    message: 'Welcome to Anecdotes, you can click me if I am an issue'
-  },
-  {
-    id: 'multiple',
-    type: 'INFO',
-    message: 'Now with multiple messages!!!'
-  }
-]
-
 const notificationsSlice = createSlice({
   name: 'notifications',
-  initialState,
+  initialState: [],
   reducers: {
     addNotificationInfo (state, action) {
       state.push({
@@ -32,11 +19,45 @@ const notificationsSlice = createSlice({
         type: 'ERROR'
       })
     },
+    setInitialAnecdotes (state, action) {
+      return action.payload
+    },
+    appendNotification (state, action) {
+      state.push(action.payload)
+    },
     deleteNotification (state, action) {
       return state.filter(s => s.id !== action.payload)
     }
   }
 })
 
-export const { addNotificationInfo, addNotificationError, deleteNotification } = notificationsSlice.actions
+export const { addNotificationInfo, addNotificationError, deleteNotification, appendNotification, setInitialAnecdotes } = notificationsSlice.actions
+
+export const setNotification = (message, timeout=5, { type = 'INFO' } = {}) => {
+  return async dispatch => {
+    const id = getId()
+    dispatch(appendNotification({ id, message: `${type}: ${message}`, type }))
+    setTimeout(() => dispatch(deleteNotification(id)), timeout * 1000)
+  }
+}
+
+export const initializeNotifications = (notifications) => {
+  return async dispatch => {
+    const finalMessages = []
+    for (const {message, type, timeout} of notifications) {
+      const id = getId()
+      finalMessages.push({
+        id,
+        message: `${type || 'INFO'}: ${message}`,
+        type: type || 'INFO',
+        timeout: timeout || 5
+      })
+    }
+    dispatch(setInitialAnecdotes(finalMessages))
+    for (let {id, timeout} of finalMessages) {
+      setTimeout(() => dispatch(deleteNotification(id)), timeout * 1000)
+    }
+  }
+}
+
 export default notificationsSlice.reducer

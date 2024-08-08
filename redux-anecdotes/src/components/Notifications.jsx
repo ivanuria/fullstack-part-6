@@ -1,14 +1,8 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useSelector, useDispatch } from "react-redux"
 import { deleteNotification } from "../reducers/notificationsReducer"
 
 const Notification = ({ type, message, id }) => {
   const dispatch = useDispatch()
-
-  useEffect(() => {
-    setTimeout(() => dispatch(deleteNotification(id)), 5000)
-  }, [id])
-
   const style = {
     border: '2px solid currentcolor',
     borderRadius: 8,

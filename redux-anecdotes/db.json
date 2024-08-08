@@ -3,7 +3,7 @@
     {
       "content": "If it hurts, do it more often",
       "id": "29636",
-      "votes": 2
+      "votes": 5
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
@@ -38,12 +38,22 @@
     {
       "id": "f878",
       "content": "Redux and Thunk are sanity",
-      "votes": 3
+      "votes": 5
     },
     {
       "id": "e142",
       "content": "I need to get used to this",
-      "votes": 1
+      "votes": 2
+    },
+    {
+      "id": "7f06",
+      "content": "Does this work?",
+      "votes": 0
+    },
+    {
+      "id": "5d0e",
+      "content": "Wake me up before you go go!",
+      "votes": 3
     }
   ]
 }
