@@ -3,7 +3,7 @@
     {
       "content": "If it hurts, do it more often",
       "id": "29636",
-      "votes": 1
+      "votes": 2
     },
     {
       "content": "Adding manpower to a late software project makes it later!",
@@ -33,12 +33,17 @@
     {
       "id": "660d",
       "content": "I've got to break free. God knows, God knows I want to break free!",
-      "votes": 10
+      "votes": 12
     },
     {
       "id": "f878",
       "content": "Redux and Thunk are sanity",
-      "votes": 0
+      "votes": 3
+    },
+    {
+      "id": "e142",
+      "content": "I need to get used to this",
+      "votes": 1
     }
   ]
 }

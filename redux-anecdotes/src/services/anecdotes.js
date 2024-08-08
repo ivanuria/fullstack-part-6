@@ -18,7 +18,14 @@ const createNew = async (content) => {
   }
 }
 
+const updateItem = async (id, content) => {
+  if (content) {
+    await axios.put(`${baseUrl}/${id}`, content)
+  }
+}
+
 export default {
   getAll,
-  createNew
+  createNew,
+  updateItem
 }

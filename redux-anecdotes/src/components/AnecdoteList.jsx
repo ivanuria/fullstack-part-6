@@ -1,5 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux'
-import { voteTo } from '../reducers/anecdoteReducer'
+import { updateAnecdote } from '../reducers/anecdoteReducer'
 import { addNotificationInfo } from '../reducers/notificationsReducer'
 
 const Anecdote = ({ anecdote, handleVote, ...props }) => {
@@ -10,7 +10,7 @@ const Anecdote = ({ anecdote, handleVote, ...props }) => {
       </div>
       <div>
         has {anecdote.votes}
-        <button onClick={() => handleVote(anecdote.id) } style={ { marginInlineStart: '1ch' } }>vote</button>
+        <button onClick={() => handleVote(anecdote) } style={ { marginInlineStart: '1ch' } }>vote</button>
       </div>
     </li>
   )
@@ -23,17 +23,15 @@ const AnecdoteList = () => {
   })
   const dispatch = useDispatch()
 
-  const vote = (id) => {
-    const voted = anecdotes.find(anecdote => anecdote.id === id)
-    console.log('vote to', id)
-    dispatch(voteTo(id))
-    dispatch(addNotificationInfo(`You voted for '${voted.content}'`))
+  const handleVote = (anecdote) => {
+    dispatch(updateAnecdote({ ...anecdote, votes: anecdote.votes + 1 }))
+    dispatch(addNotificationInfo(`You voted for '${anecdote.content}'`))
   }
 
   return (
   <ul style={ { paddingInlineStart: '0px', listStyleType: 'none' } }>
     {[...anecdotes].sort((a, b) => b.votes - a.votes).map(anecdote =>
-      <Anecdote key={ anecdote.id } anecdote={ anecdote } handleVote={ vote } />
+      <Anecdote key={ anecdote.id } handleVote={ handleVote } anecdote={ anecdote } />
     )}
   </ul>
   )
