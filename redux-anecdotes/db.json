@@ -34,6 +34,11 @@
       "id": "660d",
       "content": "I've got to break free. God knows, God knows I want to break free!",
       "votes": 10
+    },
+    {
+      "id": "f878",
+      "content": "Redux and Thunk are sanity",
+      "votes": 0
     }
   ]
 }
